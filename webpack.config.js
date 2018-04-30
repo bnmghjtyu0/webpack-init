@@ -5,15 +5,9 @@ const config = {
   //  入口點
   entry: ['./src/main.js'],
 
-  //  伺服器
-  devServer: {
-    contentBase: './dist'
-  },
-
   //   輸出點
   output: {
     path: path.resolve(__dirname, './dist'),
-
     filename: 'bundle.js'
   },
 
@@ -45,7 +39,7 @@ const config = {
   }
 }
 
-module.export = config
+module.exports = config
 
 // 執行
 // webpack -p

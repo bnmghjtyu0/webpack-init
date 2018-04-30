@@ -4,7 +4,6 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "webpack-dev-server --open",
     "build": "node build/build.js"
   },
   "author": "",
