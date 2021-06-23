@@ -16,13 +16,19 @@ module.exports = {
   target: target,
   entry: ["./src/index.js"],
 
+  output: {
+    assetModuleFilename: "images/[hash][ext][query]", //圖片輸出路徑
+  },
+
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: "asset/resource", //asset/inline 不產生圖片檔 or //asset/resource 產生圖片檔
+        parser: {
+          dataUrlCondition: {
+            maxSize: 30 * 1024,
+          },
         },
       },
       {
@@ -34,6 +40,13 @@ module.exports = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
     ],
   },
   plugins: [
@@ -41,8 +54,8 @@ module.exports = {
     new ImageminPlugin({
       externalImages: {
         context: ".",
-        source: glob.sync("src/assets/images/**/*.{png,jpg,jpeg,gif,svg}"),
-        destination: "assests/dist/images",
+        source: glob.sync("public/assets/images/**/*.{png,jpg,jpeg,gif,svg}"),
+        destination: "public/assets/images",
         filename: "[name].[ext]",
       },
     }),

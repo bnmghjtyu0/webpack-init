@@ -21,3 +21,10 @@ h1 {
 .btn {
   font-size: 1.5rem;
 }
+
+.art {
+  width: 200px;
+  height: calc(200px * 4294 / 2400);
+  background: url("../images/girl-art.jpg") no-repeat center center;
+  background-size: cover;
+}

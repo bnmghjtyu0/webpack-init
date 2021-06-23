@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import GirlArt from "../public/assets/images/girl-art.jpg";
 const App = () => {
   const recipe = {
     leatherStripe: 2,
@@ -15,6 +15,8 @@ const App = () => {
     <div>
       <h1>Hello React</h1>
       <button className="btn">按鈕</button>
+      <div className="art"></div>
+      <img src={GirlArt} alt="girl" width={200} />
     </div>
   );
 };
