@@ -1,0 +1,20 @@
+@use "./component/variable";
+
+html,
+body {
+  font-size: 62.5%;
+}
+
+body {
+  color: var(--text);
+  background-color: variable.$bg;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.btn {
+  font-size: 1.5rem;
+}

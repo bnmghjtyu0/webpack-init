@@ -1,3 +1,5 @@
+import "../public/assets/css/global.css";
+import "../public/assets/css/index.scss"
 const recipe = {
   leatherStripe: 2,
   ironIngot: 1,

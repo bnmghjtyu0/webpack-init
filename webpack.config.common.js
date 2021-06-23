@@ -2,9 +2,18 @@ const path = require("path");
 const webpack = require("webpack");
 const glob = require("glob");
 const ImageminPlugin = require("imagemin-webpack-plugin").default;
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+let mode = "development";
+let target = "web";
+if (process.env.NODE_ENV === "production") {
+  mode = "production";
+  target = "browserslist";
+}
 
 module.exports = {
-  mode: "development",
+  mode: mode,
+  target: target,
   entry: ["./src/index.js"],
 
   module: {
@@ -17,26 +26,18 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: [{ loader: "style-loader" }, { loader: "css-loader" }],
-      },
-      {
-        test: /\.(scss|sass)$/,
+        test: /\.(s[ac]|c)ss$/i,
         use: [
-          {
-            loader: "style-loader",
-          },
-          {
-            loader: "css-loader",
-          },
-          {
-            loader: "sass-loader",
-          },
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
         ],
       },
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({}),
     new ImageminPlugin({
       externalImages: {
         context: ".",

@@ -1,0 +1,2 @@
+
+:root{--text: red}html,body{font-size:62.5%}body{color:red;color:var(--text);background-color:#ffdab9}.row{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row}.btn{font-size:1.5rem}
