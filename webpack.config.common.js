@@ -1,40 +1,49 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require("path");
+const webpack = require("webpack");
+const glob = require("glob");
+const ImageminPlugin = require("imagemin-webpack-plugin").default;
 
 module.exports = {
-  //  入口點
- entry: ['./src/main.js'],
+  mode: "development",
+  entry: ["./src/index.js"],
 
- //   輸出點
- output: {
-   path: path.resolve(__dirname, './dist'),
-   filename: 'bundle.js'
- },
-
- //   儲存時自動編譯
- watch: true,
-
- module: {
-   //   webpack loader
-   rules: [
-     {
-       test: /\.css$/,
-       use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
-     },
-     {
-       test: /\.(scss|sass)$/,
-       use: [
-         {
-           loader: 'style-loader'
-         },
-         {
-           loader: 'css-loader'
-         },
-         {
-           loader: 'sass-loader'
-         }
-       ]
-     }
-   ]
- }
-}
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+      {
+        test: /\.css$/,
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }],
+      },
+      {
+        test: /\.(scss|sass)$/,
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+          },
+          {
+            loader: "sass-loader",
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new ImageminPlugin({
+      externalImages: {
+        context: ".",
+        source: glob.sync("src/assets/images/**/*.{png,jpg,jpeg,gif,svg}"),
+        destination: "assests/dist/images",
+        filename: "[name].[ext]",
+      },
+    }),
+  ],
+};
