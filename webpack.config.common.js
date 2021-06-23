@@ -3,7 +3,8 @@ const webpack = require("webpack");
 const glob = require("glob");
 const ImageminPlugin = require("imagemin-webpack-plugin").default;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 let mode = "development";
 let target = "web";
 if (process.env.NODE_ENV === "production") {
@@ -17,6 +18,7 @@ module.exports = {
   entry: ["./src/index.js"],
 
   output: {
+    path: path.resolve(__dirname, "dist"),
     assetModuleFilename: "images/[hash][ext][query]", //圖片輸出路徑
   },
 
@@ -59,6 +61,10 @@ module.exports = {
         filename: "[name].[ext]",
       },
     }),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
+    new CleanWebpackPlugin(),
   ],
 
   resolve: {
