@@ -1,13 +1,7 @@
+import * as React from "react";
+import ReactDOM from "react-dom";
+import App from "./app";
 import "../public/assets/css/global.css";
-import "../public/assets/css/index.scss"
-const recipe = {
-  leatherStripe: 2,
-  ironIngot: 1,
-  refinedMoonstone: 4,
-};
-const recipe2 = {
-  ...recipe,
-  id: 1,
-};
+import "../public/assets/css/index.scss";
 
-console.log(recipe);
+ReactDOM.render(<App />, document.querySelector("#root"));
