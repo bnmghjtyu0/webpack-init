@@ -32,7 +32,18 @@ module.exports = {
             maxSize: 30 * 1024,
           },
         },
+        use: [
+          {
+            loader: "image-webpack-loader",
+            options: {
+              // 只在 production 環境啟用壓縮 (第二步)
+              // disable: process.env.NODE_ENV === "production" ? false : true,
+              disable: false,
+            },
+          },
+        ],
       },
+
       {
         test: /\.(s[ac]|c)ss$/i,
         use: [
